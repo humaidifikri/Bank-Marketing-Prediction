@@ -1,0 +1,37 @@
+{
+  "model_type": "RandomForestClassifier",
+  "threshold": 0.3,
+  "numerical_cols": [
+    "age",
+    "balance",
+    "campaign",
+    "pdays_clean",
+    "previous"
+  ],
+  "categorical_cols": [
+    "job",
+    "marital",
+    "education",
+    "default",
+    "housing",
+    "loan",
+    "contact",
+    "month",
+    "poutcome"
+  ],
+  "engineered_cols": [
+    "was_contacted_before",
+    "pdays_clean"
+  ],
+  "dropped_cols": [
+    "duration",
+    "day",
+    "pdays"
+  ],
+  "metrics": {
+    "recall": 0.6,
+    "precision": 0.31,
+    "auc_roc": 0.7704,
+    "lift": 2.66
+  }
+}
