@@ -1,12 +1,11 @@
-# app/predict.py
 import joblib
 import json
 import pandas as pd
 from pathlib import Path
 
-# Load sekali saat module di-import, BUKAN setiap request — ini penting untuk performa
-MODEL_DIR = Path(__file__).resolve().parent.parent / "models"
-
+# Load sekali saat module di-import, BUKAN setiap request
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_DIR = BASE_DIR / "models"
 _pipeline = joblib.load(MODEL_DIR / "bank_marketing_rf-model.joblib")
 
 with open(MODEL_DIR / "rf-model_metadata.json") as f:

@@ -2,8 +2,6 @@
 
 Predicting whether a customer will subscribe to a term deposit based on direct marketing campaign data from a Portuguese banking institution — built end-to-end from EDA to a deployed REST API.
 
-<!-- [TODO: link demo Render di sini setelah deploy] · [TODO: link API docs (`/docs`) di sini] -->
-
 ## Business Problem
 
 Bank memiliki budget terbatas untuk telemarketing dan tidak bisa menelepon seluruh basis nasabah. Tujuan project ini adalah membangun model yang membantu bank memprioritaskan nasabah mana yang paling berpotensi subscribe term deposit, sehingga campaign menjadi lebih efisien dibanding menelepon secara acak.
@@ -57,17 +55,20 @@ Threshold default (0.5) terbukti terlalu konservatif untuk goal recall-first kit
 
 ## Deployment
 
-- Model dan preprocessing pipeline digabung menjadi satu objek `sklearn.Pipeline`, di-serialize dengan `joblib`, dan dibungkus sebagai REST API menggunakan **FastAPI**.
-- Threshold custom (0.3) disimpan terpisah sebagai metadata, karena tidak otomatis ter-embed ke dalam pipeline sklearn.
-- Container dengan **Docker** untuk memastikan environment yang konsisten antara lokal dan production.
-<!-- - Live demo: `[TODO: link Render]`
-- Interactive API docs (Swagger UI): `[TODO: link]/docs` -->
+Model dan preprocessing pipeline digabung menjadi satu objek `sklearn.Pipeline`, 
+di-serialize dengan `joblib`, dan dibungkus sebagai REST API menggunakan **FastAPI**. 
+Threshold custom (0.3) disimpan terpisah sebagai metadata karena tidak otomatis 
+ter-embed ke dalam pipeline sklearn. Containerized dengan **Docker** untuk local testing.
+
+API berhasil dijalankan secara lokal via Docker dan uvicorn — deployment ke platform 
+publik akan ditambahkan pada iterasi berikutnya.
 
 ### Menjalankan secara lokal
 
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+uv run fastapi dev app/main.py
 # buka http://127.0.0.1:8000/docs
 ```
 
@@ -76,6 +77,7 @@ uvicorn app.main:app --reload
 ```bash
 docker build -t bank-marketing-api .
 docker run -p 8000:8000 bank-marketing-api
+# buka http://localhost:8000/docs
 ```
 
 ## Lessons Learned

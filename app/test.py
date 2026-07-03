@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../app')  # sesuaikan path
+sys.path.append('../app')
 from app.predict import predict_subscription
 
 sample_input = {
